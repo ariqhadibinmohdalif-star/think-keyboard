@@ -12,6 +12,18 @@ public class ThinkKeyboardService extends InputMethodService {
     private long spaceKeyDownTime = 0;
     private boolean isHoldingSpacebar = false;
 
+    // Instantiate our overlay modules
+    private CalculatorOverlay calculatorOverlay;
+    private CalendarOverlay calendarOverlay;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        // Initialize overlays when the system keyboard service starts up
+        calculatorOverlay = new CalculatorOverlay(this);
+        calendarOverlay = new CalendarOverlay(this);
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         InputConnection ic = getCurrentInputConnection();
@@ -66,10 +78,16 @@ public class ThinkKeyboardService extends InputMethodService {
 
     private void launchCalculatorOverlay() {
         Log.i(TAG, "Brain Trick: Activating instant floating calculator view.");
+        if (calculatorOverlay != null) {
+            calculatorOverlay.show();
+        }
     }
 
     private void launchCalendarReminderOverlay() {
         Log.i(TAG, "Brain Trick: Activating frictionless calendar logger.");
+        if (calendarOverlay != null) {
+            calendarOverlay.show();
+        }
     }
 }
 
