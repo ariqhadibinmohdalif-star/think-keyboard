@@ -1,0 +1,17 @@
+plugins {
+    id 'com.android.application' version '8.2.0'
+}
+
+android {
+    namespace 'com.think.keyboard'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "com.think.keyboard"
+        minSdk 26
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+    }
+}
+
